@@ -1,0 +1,15 @@
+import com.example.demo.model.StateTransitionDefinition;
+
+rule "Admin accepted"
+    when
+        stateDefinition : StateTransitionDefinition(currentRole=="admin" && destinationState == "attested");
+    then
+        stateDefinition.setState();
+end
+
+rule "Admin rejected"
+    when
+        stateDefinition:StateTransitionDefinition(currentRole=="admin" &&  destinationState == "rejected");
+    then
+        stateDefinition.setState();
+end
